@@ -1,7 +1,16 @@
 {
   "extends": ["next/core-web-vitals", "standard"],
   "rules": {
-    "comma-dangle": ["warn", "always-multiline"],
+    "comma-dangle": [
+      "warn",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
     "space-before-function-paren": "off",
     "semi": ["warn", "always"]
   }
