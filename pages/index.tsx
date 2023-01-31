@@ -15,7 +15,6 @@ export default function Home() {
       console.log('Already loading');
       return;
     }
-    setIsLoading(true);
     const description = descriptionInputRef.current?.value;
     if (!description) {
       console.log('No description');
@@ -27,6 +26,7 @@ export default function Home() {
       return;
     }
     setLastDescription(description);
+    setIsLoading(true);
 
     const params = new URLSearchParams();
     params.append('description', description);
