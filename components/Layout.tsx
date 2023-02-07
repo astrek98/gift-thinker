@@ -1,4 +1,4 @@
-import { AppShell, Footer, useMantineTheme } from '@mantine/core';
+import { AppShell, Container, Footer, useMantineTheme } from '@mantine/core';
 import { ReactNode } from 'react';
 import { AppHeader } from './AppHeader';
 
@@ -15,8 +15,10 @@ export function Layout({ children }: { children: ReactNode }) {
         },
       }}
       footer={
-        <Footer height={60} p="md">
-          Made with ❤️
+        <Footer height={60} p="md" bg="gray.0">
+          <Container size="lg" px={0}>
+            Made with ❤️
+          </Container>
         </Footer>
       }
       header={<AppHeader />}
