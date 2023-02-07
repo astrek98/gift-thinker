@@ -59,7 +59,6 @@ export default async function handler(
       return_likelihoods: 'NONE',
     });
 
-    console.log(response.body);
     const { text } = response.body.generations[0];
     const gifts = text
       .split('\n')
