@@ -1,6 +1,6 @@
 # ![Gift thinker main page](/public/gift-bag_64.png) [Gift Thinker](https://gift-thinker.vercel.app/)
 
-Let co:here AI generate a list of gift suggestions that your special someone might like, just describe their likes, hobbies, type of event, or anything you want about the person.
+Let [co:here](https://cohere.ai/) AI generate a list of gift suggestions that your special someone might like, just describe their likes, hobbies, type of event, or anything you want about the person.
 
 ![Gift thinker main page](/public/gift-thinker-page.PNG)
 
