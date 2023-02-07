@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <meta name="description" content="Gift thinker for any occasion" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/gift_32.png" />
+        <link rel="icon" href="/gift-bag_64.png" />
       </Head>
       <body className="p-4 text-xl flex justify-center">
         <Main />
