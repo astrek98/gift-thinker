@@ -11,7 +11,7 @@ import Image from 'next/image';
 export function AppHeader() {
   return (
     <Header height={{ base: 60, xs: 75 }} px="md">
-      <Container>
+      <Container size="lg" px={0}>
         <div
           style={{
             display: 'flex',

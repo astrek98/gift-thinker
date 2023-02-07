@@ -72,8 +72,8 @@ export function DescriptionForm({
   }
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
-      <Title order={3}>Welcome!</Title>
-      <Text>
+      <Title order={2}>Welcome!</Title>
+      <Text size="lg">
         Don&apos;t know what you can give to that special person? Don&apos;t
         worry! Just give me a description and I&apos;ll help you with some
         suggestions 💡.
@@ -81,11 +81,12 @@ export function DescriptionForm({
       <Space h="lg" />
       <form onSubmit={handleSubmit}>
         <Textarea
+          size="lg"
           ref={descriptionInputRef}
-          placeholder="write simething"
-          minRows={8}
+          placeholder="write something"
+          minRows={6}
           label="Description"
-          description="Example: likes DC superheroes, likes swimming, boy, 16 years old, travels a lot."
+          description="Example: likes walking, boy, 16 years old, travels a lot, it's his birthday."
           withAsterisk
         />
 
@@ -96,6 +97,7 @@ export function DescriptionForm({
           color="blue"
           mt="md"
           radius="md"
+          size="lg"
         >
           Start thinking!
         </Button>

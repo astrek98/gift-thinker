@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <Container size="md">
+      <Container size="lg" px={0}>
         <Grid>
           <Grid.Col sm={6}>
             <DescriptionForm
