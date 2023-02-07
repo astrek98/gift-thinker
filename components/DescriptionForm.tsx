@@ -4,6 +4,7 @@ import { FormEvent, useRef } from 'react';
 import { showNotification, updateNotification } from '@mantine/notifications';
 import { IconCheck } from './icons/IconCheck';
 import { IconX } from './icons/IconX';
+import { getSuggestion } from '@/services/suggestions';
 
 const removeListItemNumber = (gift: string) => gift.replace(/^\d\./, '').trim();
 
@@ -37,31 +38,25 @@ export function DescriptionForm({
     showNotification({
       id: notificationId,
       loading: true,
-      title: 'Generating gifts suggestions',
+      title: 'Generating gift suggestions',
       message: '',
       autoClose: false,
       disallowClose: true,
     });
 
     try {
-      const params = new URLSearchParams();
-      params.append('description', description);
-      const suggestion = await fetch(`/api/gift?${params.toString()}`).then(
-        (r) => {
-          setLoading(false);
-          updateNotification({
-            id: notificationId,
-            color: 'teal',
-            title: 'Done!',
-            message: '',
-            icon: <IconCheck size={16} />,
-            autoClose: 2500,
-          });
-          return r.json();
-        }
-      );
+      const suggestion = await getSuggestion(description);
       suggestion.gifts = suggestion.gifts.map(removeListItemNumber);
+      setLoading(false);
       setSuggestions(suggestion);
+      updateNotification({
+        id: notificationId,
+        color: 'teal',
+        title: 'Done!',
+        message: '',
+        icon: <IconCheck size={16} />,
+        autoClose: 2500,
+      });
     } catch (e: any) {
       updateNotification({
         id: notificationId,
@@ -77,7 +72,7 @@ export function DescriptionForm({
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Title order={2}>Welcome!</Title>
       <Text size="lg">
-        Don&apos;t know what you can give to that special person? Don&apos;t
+        Don&apos;t know what you can give to that special someone? Don&apos;t
         worry! Just give me a description and I&apos;ll help you with some
         suggestions 💡.
       </Text>
