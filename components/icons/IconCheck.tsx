@@ -1,4 +1,6 @@
-export function IconCheck({ size }: { size: number }) {
+import { IconProps } from '@/models/IconProps.model';
+
+export function IconCheck({ size = 36 }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
