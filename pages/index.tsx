@@ -46,7 +46,7 @@ export default function Home() {
         <title>Gift Thinker</title>
       </Head>
       <header>
-        <h1 className="text-5xl text-blue-500 font-bold flex items-center">
+        <h1>
           <Image
             src="/gift_128.png"
             alt="Gift"
@@ -57,35 +57,31 @@ export default function Home() {
           Gift Thinker
         </h1>
       </header>
-      <main className="mb-24">
+      <main>
         <form onSubmit={handleSubmit}>
-          <label className="font-medium">
-            Give a short description of the person{' '}
-            <span className="text-red-500">*</span>
+          <label>
+            Give a short description of the person <span>*</span>
             <textarea
               ref={descriptionInputRef}
               defaultValue=""
               placeholder="Example: Introvert, man, likes the beach, likes DC superheroes"
               rows={6}
               required={true}
-              className="font-normal rounded-md w-full py-3 px-4 border border-gray-300 focus:outline-none focus:border-blue-300"
             ></textarea>
           </label>
 
-          <div className="flex justify-end">
-            <button className="mt-2 border py-0 px-5 h-12 rounded-md font-semibold w-auto bg-blue-500 text-white">
-              Think gifts
-            </button>
+          <div>
+            <button>Think gifts</button>
           </div>
         </form>
 
         <section>
-          <h2 className='font-bold text-2xl mb-2'>Suggestions:</h2>
+          <h2>Suggestions:</h2>
           {suggestions && (
             <ul>
               {suggestions.gifts.map((gift) => (
                 <li key={gift}>
-                  <span className="text-xl">{gift}</span>
+                  <span>{gift}</span>
                 </li>
               ))}
             </ul>
