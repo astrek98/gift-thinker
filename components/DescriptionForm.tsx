@@ -75,8 +75,8 @@ export function DescriptionForm({
       <Title order={3}>Welcome!</Title>
       <Text>
         Don&apos;t know what you can give to that special person? Don&apos;t
-        worry! Just give me a description and I&apos;ll give you some
-        suggestions.
+        worry! Just give me a description and I&apos;ll help you with some
+        suggestions 💡.
       </Text>
       <Space h="lg" />
       <form onSubmit={handleSubmit}>
