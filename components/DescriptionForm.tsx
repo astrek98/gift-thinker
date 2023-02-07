@@ -5,6 +5,8 @@ import { showNotification, updateNotification } from '@mantine/notifications';
 import { IconCheck } from './icons/IconCheck';
 import { IconX } from './icons/IconX';
 
+const removeListItemNumber = (gift: string) => gift.replace(/^\d\./, '').trim();
+
 type DescriptionProps = {
   loading: boolean;
   setLoading: (loading: boolean) => void;
@@ -44,7 +46,7 @@ export function DescriptionForm({
     try {
       const params = new URLSearchParams();
       params.append('description', description);
-      const suggestions = await fetch(`/api/gift?${params.toString()}`).then(
+      const suggestion = await fetch(`/api/gift?${params.toString()}`).then(
         (r) => {
           setLoading(false);
           updateNotification({
@@ -58,7 +60,8 @@ export function DescriptionForm({
           return r.json();
         }
       );
-      setSuggestions(suggestions);
+      suggestion.gifts = suggestion.gifts.map(removeListItemNumber);
+      setSuggestions(suggestion);
     } catch (e: any) {
       updateNotification({
         id: notificationId,
