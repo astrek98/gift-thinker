@@ -45,23 +45,29 @@ export default async function handler(
   const description = query.description?.toString() || "It's his/her birthday";
   const prompt = PROMPT_TEMPLATE.replace('{1}', description);
 
-  const response = await cohere.generate({
-    model: 'command-xlarge-20221108',
-    prompt,
-    max_tokens: 250,
-    temperature: 0.8,
-    k: 0,
-    p: 0.75,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-    stop_sequences: ['--'],
-    return_likelihoods: 'NONE',
-  });
+  try {
+    const response = await cohere.generate({
+      model: 'command-xlarge-20221108',
+      prompt,
+      max_tokens: 250,
+      temperature: 0.8,
+      k: 0,
+      p: 0.75,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+      stop_sequences: ['--'],
+      return_likelihoods: 'NONE',
+    });
 
-  const { text } = response.body.generations[0];
-  const gifts = text
-    .split('\n')
-    .filter((gift) => gift.length && gift.match(/^\d/));
+    console.log(response.body);
+    const { text } = response.body.generations[0];
+    const gifts = text
+      .split('\n')
+      .filter((gift) => gift.length && gift.match(/^\d/));
 
-  res.status(200).json({ text, gifts });
+    res.status(200).json({ text, gifts });
+  } catch (error: any) {
+    console.error({ error: error.message });
+    res.status(500);
+  }
 }
