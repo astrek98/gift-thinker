@@ -1,6 +1,9 @@
 import { GiftSuggestion } from '@/models/GiftSuggestion.model';
 import { Button, Card, Space, Text, Textarea, Title } from '@mantine/core';
 import { FormEvent, useRef } from 'react';
+import { showNotification, updateNotification } from '@mantine/notifications';
+import { IconCheck } from './icons/IconCheck';
+import { IconX } from './icons/IconX';
 
 type DescriptionProps = {
   loading: boolean;
@@ -26,19 +29,46 @@ export function DescriptionForm({
       console.error('No description');
       return;
     }
-    console.log({ description });
-    setLoading(true);
-    console.log('fetching suggestions');
 
-    const params = new URLSearchParams();
-    params.append('description', description);
-    const suggestions = await fetch(`/api/gift?${params.toString()}`).then(
-      (r) => {
-        setLoading(false);
-        return r.json();
-      }
-    );
-    setSuggestions(suggestions);
+    setLoading(true);
+    const notificationId = 'load-data';
+    showNotification({
+      id: notificationId,
+      loading: true,
+      title: 'Generating gifts suggestions',
+      message: '',
+      autoClose: false,
+      disallowClose: true,
+    });
+
+    try {
+      const params = new URLSearchParams();
+      params.append('description', description);
+      const suggestions = await fetch(`/api/gift?${params.toString()}`).then(
+        (r) => {
+          setLoading(false);
+          updateNotification({
+            id: notificationId,
+            color: 'teal',
+            title: 'Done!',
+            message: '',
+            icon: <IconCheck size={16} />,
+            autoClose: 2500,
+          });
+          return r.json();
+        }
+      );
+      setSuggestions(suggestions);
+    } catch (e: any) {
+      updateNotification({
+        id: notificationId,
+        color: 'red',
+        title: 'Ups, something went wrong, try again',
+        message: e.message || '',
+        icon: <IconX size={16} />,
+        autoClose: 2500,
+      });
+    }
   }
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
